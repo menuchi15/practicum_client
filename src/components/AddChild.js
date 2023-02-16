@@ -3,6 +3,7 @@ import { detailsContext } from "../DetailsContext";
 import { useForm} from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import '../style/StyleSheet.css'
 
 export default function AddChild(){
 
@@ -17,30 +18,41 @@ export default function AddChild(){
     }
 
     return(
-        <form className="div-location row" onSubmit={handleSubmit(onSubmit)}>
-            <div className="input-group input-group-sm mb-3 row">
-                <div className="form-floating">
-                    <input className="form-control" placeholder="תעודת זהות" {...register('name', { required: true })} />
-                    <label for="floatingInput">שם</label>
-                </div>
-                {errors.name && <p>זהו שדה חובה</p>}
-            </div>
-
-            <div className="input-group input-group-sm mb-3 row">
-                <div className="form-floating">
-                    <input placeholder="מספר זהות" className="form-control" {...register('idNumber', { required: true})} />
-                    <label for="floatingInput">מספר זהות</label>
-                </div>  
-                {errors.idNumber && <p>מספר הזהות אינו תקין</p>}
-            </div>
-
-            <div className="input-group input-group-sm mb-3 form-floating">
-                <label className="input-group-text">תאריך לידה</label>
-                <input className="form-control" type="date" {...register('birthDate', { required: true })}/>   
-            </div>
+        <form className="direct div-location row padding border border-secondary-subtle" style={{width:'35vw'}} onSubmit={handleSubmit(onSubmit)}>
+            <h5 className="padding-a mb-5 text-primary-emphasis">הוסף את פרטי הילד</h5>
             
-            <Button type="submit" variant="text">שמור</Button>
-            {/* <input className="btn btn-outline-primary" type="submit" value="שמור"></input> */}
+            <div className="input-group input-group-sm mb-3 row">
+                <div>
+                    <div className="form-floating">
+                        <input className="form-control" placeholder="שם" {...register('name', { required: true })} />
+                        <label >שם</label>
+                    </div>
+                </div>
+                {errors.name && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div>
+
+            <div className="input-group input-group-sm  row">
+                <div>
+                    <div className="form-floating">
+                        <input placeholder="מספר זהות" className="form-control" {...register('idNumber', { required: true,minLength:9,maxLength:9})} />
+                        <label >מספר זהות</label>
+                    </div> 
+                </div>
+                {errors.idNumber && <p className="invalid-field text-primary-emphasis">מספר הזהות אינו תקין</p>} 
+                {/* {errors?.idNumber?.minLength && <p className="invalid-field text-primary-emphasis">מספר הזהות אינו תקין</p>}
+                {errors?.idNumber?.maxLength && <p className="invalid-field text-primary-emphasis">מספר הזהות אינו תקין</p>}
+                {errors.idNumber?.required && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>} */}
+            </div>
+
+            <div className="col mb-2 p-4">
+                <div className="input-group mb-1 direct-d">
+                    <input className="form-control" type="date" {...register('birthDate', { required: true })}/>   
+                    <span className="input-group-text">תאריך לידה</span>
+                </div>
+                {errors.birthDate && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div>
+
+            <Button type="submit" variant="text" size="medium">שמור</Button>
         </form>
     )
 }

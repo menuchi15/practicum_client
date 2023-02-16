@@ -12,7 +12,7 @@ export default function DetailsContext(props){
     const [children,setChildren]=useState([])
 
     return(
-        <div className="div-location">
+        <div className="div-location bg-body-tertiary">
             <detailsContext.Provider value={{firstName,setFirstName,lastName,setLastName,idNumber,setIdNumber,birthDate,setBirthDate,genus,setGender,HMO,setHMO,children,setChildren}}>
                 {props.children}
             </detailsContext.Provider>

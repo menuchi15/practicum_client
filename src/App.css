@@ -1,8 +1,10 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
   /* direction: rtl; */
-  height: 100vh;
-  width: 100vw;
+  height: 96vh;
+  width: 96vw;
 }
 
 .div-location{
@@ -10,8 +12,8 @@
   justify-content: space-around;
   align-content: center;
   align-items: center;
-  height: 80vh;
-  width:100vw
+  height: 100vh;
+  width:70vw
 }
 
 .margin{

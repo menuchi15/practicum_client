@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import {useNavigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { detailsContext } from "../DetailsContext";
-import AddChild from "./AddChild";
 import Button from '@mui/material/Button'
 import axios from 'axios'
+import '../style/StyleSheet.css'
 
 export default function FormToComplete(){
 
@@ -37,73 +37,92 @@ export default function FormToComplete(){
     }
 
     return(
-        <div className="div-location">
-            <form className="row rounded-1" onSubmit={handleSubmit(onSubmit)} >
-                <div className="col">
-                    <div className="row input-group input-group-sm mb-3">
+        <form className="col padding direct border border-secondary-subtle form-style mt-5" onSubmit={handleSubmit(onSubmit)} >
+            <div className="row input-group mb-3">
+                <div>
+                    <div className="form-floating">
                         <input className="form-control" placeholder="שם פרטי" {...register('firstName', { required: true })} value={detailsCtx.firstName} onChange={e=>{detailsCtx.setFirstName(e.target.value)}}/>
-                        {errors.firstName && <p className="invalid-feedback">First name is required.</p>}
+                        <label>שם פרטי</label>
                     </div>
-                    <div className="row input-group input-group-sm mb-3">
-                        <input className="form-control" placeholder="שם משפחה" {...register('lastName', { required: true })} value={detailsCtx.lastName} onChange={e=>{detailsCtx.setLastName(e.target.value)}}/>
-                        {errors.lastName && <p className="invalid-feedback">Last name is required.</p>}
+                </div>
+                {errors.firstName && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div>
+
+            <div className="row input-group mb-3">
+                <div> 
+                    <div className="form-floating">
+                        <input className="form-control" placeholder="שם משפחה" {...register('lastName', { required: true })} value={detailsCtx.lastName} onChange={e=>{detailsCtx.setLastName(e.target.value)}}/>                                
+                        <label>שם משפחה</label>
                     </div>
-                    <div className="row input-group input-group-sm mb-3">
+                </div>
+                {errors.lastName && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div>
+                
+            <div className="row input-group mb-3">
+               <div>
+                    <div className="form-floating">
                         <input className="form-control" placeholder="מספר זהות" {...register('idNumber', { required: true, minLength:9, maxLength:9 })} value={detailsCtx.idNumber} onChange={e=>{detailsCtx.setIdNumber(e.target.value)}}/>
-                        {errors.idNumber && <p className="invalid-feedback">Last name is required.</p>}
+                        <label>מספר זהות</label>
                     </div>
                 </div>
-                <div className="col">
-                    <div className="input-group input-group-sm mb-3">
-                        <label className="input-group-text">תאריך לידה</label>
-                        <input type="date" {...register('birthDate', { required: true })} value={detailsCtx.birthDate} onChange={e=>{detailsCtx.setBirthDate(e.target.value)}}/>   
-                    </div>
-                    <div className="input-group input-group-sm mb-3">
-                        <div className="form-check">
-                            <span className="form-check-label">זכר</span>
-                            <input type='radio' className="form-check-input" {...register('gender',{required: true})} value="זכר" onChange={e=>{detailsCtx.setGender(e.target.value)}}/>
-                        </div>              
-                        <div className="form-check">
-                            <span className="form-check-label">נקבה</span>
-                            <input type='radio' className="form-check-input" {...register('gender',{required: true})} value="נקבה" onChange={e=>{detailsCtx.setGender(e.target.value)}}/>
-                        </div>             
-                    </div>
-                    <div className="input-group input-group-sm mb-3">
-                        <label className="input-group-text">קופת חולים</label>
-                        <select className="form-select" {...register('HMO')} value={detailsCtx.HMO} onChange={e=>{detailsCtx.setHMO(e.target.value)}}>
-                            <option value="כללית">כללית</option>
-                            <option value="מכבי">מכבי</option>
-                            <option value="לאומית">לאומית</option>
-                            <option value="מאוחדת">מאוחדת</option>
-                            <option value="אחר">אחר</option>
-                        </select>
-                    </div> 
+                {errors.idNumber && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div>
+
+            <div className="col input-group mb-3">
+                <div className="input-group mb-1 direct-d">
+                    <input className="form-control" type="date" {...register('birthDate', { required: true })} value={detailsCtx.birthDate} onChange={e=>{detailsCtx.setBirthDate(e.target.value)}}/>   
+                    <span className="input-group-text">תאריך לידה</span>
                 </div>
-                <div>
-                    <div>
-                        {
-                            detailsCtx.children.map((c,index)=>
-                            <ul className="list-inline-item" key={index}>
-                                <li><span className="badge badge-primary">{index+1}</span>:{c.name}</li>
-                            </ul>  
-                            )
-                        }
-                    </div>
-                    {!show
-                    ?
-                    <div>            
-                        <label>הוסף ילד</label>
-                        <Button onClick={()=>setShow(true)} variant="text">+</Button>
-                    </div> : 
-                    // <AddChild/>
-                        navigate('/addChild')
-                    }
+                {errors.idNumber && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div>            
+             
+            <hr/>   
+            <div className="col input-group mb-3 justify-content-evenly">
+                <div className="form-check">
+                    <input type='radio' className="form-check-input" {...register('gender',{required: true})} value="זכר" onChange={e=>{detailsCtx.setGender(e.target.value)}}/>
+                    <span className="form-check-label">זכר</span>
+                </div>              
+                <div className="form-check">
+                    <input type='radio' className="form-check-input" {...register('gender',{required: true})} value="נקבה" onChange={e=>{detailsCtx.setGender(e.target.value)}}/>
+                    <span className="form-check-label">נקבה</span>
                 </div> 
-                <div>
-                <Button type="submit" variant="text">שמור ושלח</Button>
-                {/* <input className="btn btn-outline-primary opacity-75 col-3" type="submit" value="שמור ושלח"/> */}
+                {errors.gender && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}            
+            </div>
+
+            <div className="col input-group input-group-sm mb-3 direct-d">
+                <select className="form-select" {...register('HMO')} value={detailsCtx.HMO} onChange={e=>{detailsCtx.setHMO(e.target.value)}}>
+                    <option value="כללית" className="direct">כללית</option>
+                    <option value="מכבי" className="direct">מכבי</option>
+                    <option value="לאומית" className="direct">לאומית</option>
+                    <option value="מאוחדת" className="direct">מאוחדת</option>
+                    <option value="אחר" className="direct">אחר</option>
+                </select>
+                <label className="input-group-text">קופת חולים</label>
+                {errors.HMO && <p className="invalid-field text-primary-emphasis">זהו שדה חובה</p>}
+            </div> 
+                
+            <hr/>
+            <div>
+                <div className="direct mb-3 d-flex justify-content-start">
+                    <ul className="list-inline">
+                        {detailsCtx.children.map((c,index)=>  
+                        <li key={index} className="list-block-item p-2">
+                            <span className="badge bg-primary rounded-pill m-2">{index+1}</span>
+                            {c.name}
+                        </li> 
+                        )}
+                    </ul> 
                 </div>
-            </form>
-    </div>
+                {!show
+                ?
+                <div className="col direct">            
+                    <label d-inline>הוסף ילד</label>
+                    <Button onClick={()=>setShow(true)} variant="text" size="large">+</Button>
+                </div> :
+                    navigate('/addChild')
+                }
+            </div>
+            <Button type="submit" variant="text" size="large">שמור ושלח</Button>
+        </form>
     )
 }
