@@ -11,17 +11,17 @@ export default function Instructions(){
 
     return(
         <div className="direct row div-location padd">
-            <p className="m-3">
+            <div className="m-3">
                 <h5 className="text-primary-emphasis">שלום {nameCtx.firstName}</h5>
             המשרד שלנו במגמת התייעלות<br/>
             ולכן התבקשת למלא טופס זה<br/>
-            </p>
+            </div>
             <p className="m-1">
              בטופס תמלא/י את פרטיך ופרטי ילדיך<br/>
             כדי שנוכל להתאים לכם את המתנות המתאימות לכם ביותר<br/>
             ולפנק אתכם באמת בחגים ובחופשים<br/>      
             </p>
-            <p className="m-3">
+            <div className="m-3">
             אנחנו כאן כדי לעזור לך---<br/>
              שים/י לב:<br/>
             <ul className="list-inline-item">
@@ -32,7 +32,7 @@ export default function Instructions(){
             </ul>
             <br/>
             בהצלחה!!
-            </p>
+            </div>
             <Button variant="text" size="large" onClick={()=>navigate('/')}>חזרה לטופס</Button>
         </div>
     )

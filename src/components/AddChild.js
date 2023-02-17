@@ -13,7 +13,7 @@ export default function AddChild(){
 
     function onSubmit(data){
         console.log(data)
-        ctx.setChildren([...ctx.children,{'name':data.name,'idNumber':data.idNumber,'birthDate':data.birthDate}])
+        ctx.setChildren([...ctx.children,{'id':0,'name':data.name,'idNumber':data.idNumber,'birthDate':data.birthDate}])
         navigate('/');
     }
 

@@ -7,13 +7,13 @@ export default function DetailsContext(props){
     const [lastName,setLastName]=useState('')
     const [idNumber,setIdNumber]=useState('')
     const [birthDate,setBirthDate]=useState('')//(new Date())
-    const [genus,setGender]=useState('')
+    const [gender,setGender]=useState('')
     const [HMO,setHMO]=useState('')
     const [children,setChildren]=useState([])
 
     return(
         <div className="div-location bg-body-tertiary">
-            <detailsContext.Provider value={{firstName,setFirstName,lastName,setLastName,idNumber,setIdNumber,birthDate,setBirthDate,genus,setGender,HMO,setHMO,children,setChildren}}>
+            <detailsContext.Provider value={{firstName,setFirstName,lastName,setLastName,idNumber,setIdNumber,birthDate,setBirthDate,gender,setGender,HMO,setHMO,children,setChildren}}>
                 {props.children}
             </detailsContext.Provider>
         </div>

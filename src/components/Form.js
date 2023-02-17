@@ -116,7 +116,7 @@ export default function FormToComplete(){
                 {!show
                 ?
                 <div className="col direct">            
-                    <label d-inline>הוסף ילד</label>
+                    <label className="d-inline">הוסף ילד</label>
                     <Button onClick={()=>setShow(true)} variant="text" size="large">+</Button>
                 </div> :
                     navigate('/addChild')
